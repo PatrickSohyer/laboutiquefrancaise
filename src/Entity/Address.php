@@ -19,7 +19,8 @@ class Address
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="addresses")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     *
      */
     private $user;
 
@@ -71,6 +72,11 @@ class Address
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function __toString(): string
+    {
+       return $this->getName().'[br]'.$this->getAddress().'[br]'.$this->getCity().' - '.$this->getCountry();
     }
 
     public function getUser(): ?User

@@ -48,11 +48,13 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity=Address::class, mappedBy="user")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $addresses;
 
     /**
      * @ORM\OneToMany(targetEntity=Order::class, mappedBy="user")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $orders;
 
@@ -141,6 +143,11 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getFullName(): string
+    {
+        return $this->getFirstname().' '.$this->getLastname();
     }
 
     public function getFirstname(): ?string

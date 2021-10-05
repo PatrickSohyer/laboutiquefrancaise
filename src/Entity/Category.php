@@ -26,6 +26,7 @@ class Category
 
     /**
      * @ORM\OneToMany(targetEntity=Product::class, mappedBy="category")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $products;
 
