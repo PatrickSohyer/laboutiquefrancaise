@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AccountAddressController extends AbstractController
 {
 
-    private $entityManager;
+    private EntityManagerInterface $entityManager;
 
     public function __construct(EntityManagerInterface $entityManager)
     {
