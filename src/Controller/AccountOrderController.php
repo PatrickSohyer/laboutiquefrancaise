@@ -45,7 +45,8 @@ class AccountOrderController extends AbstractController
 
 
         return $this->render('account/order_show.html.twig', [
-            'order' => $order
+            'order' => $order,
+            'reference' => $reference
         ]);
     }
 }

@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ProductController extends AbstractController
 {
-    private $entityManager;
+    private EntityManagerInterface $entityManager;
 
     public function __construct(EntityManagerInterface $entityManager)
     {
@@ -47,15 +47,18 @@ class ProductController extends AbstractController
     /**
      * @Route("/produit/{slug}", name="produit")
      */
-    public function show($slug, ProductRepository $productRepo)
+    public function show($slug)
     {
-        $product = $productRepo->findOneBySlug($slug);
+        $product = $this->entityManager->getRepository(Product::class)->findOneBySlug($slug);
+        $products = $this->entityManager->getRepository(Product::class)->findByIsBest(1);
+
         if (!$product) {
             return $this->redirectToRoute('produits');
         }
 
         return $this->render('product/show.html.twig', [
-            'product' => $product
+            'product' => $product,
+            'products' => $products
         ]);
     }
 }

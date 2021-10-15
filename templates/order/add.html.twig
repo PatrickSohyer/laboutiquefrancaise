@@ -20,7 +20,7 @@
             <strong>Mon transporteur</strong>
             <div class="form-check">
                 {{ carrier.name }} <br>
-                {{ carrier.description }} <br>
+                {{ carrier.description | raw }} <br>
                 {{ (carrier.price / 100) | number_format(2, ',', '.') }}€
             </div>
         </div>
